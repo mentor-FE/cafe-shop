@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 const categories = [
-  { id: 1, lable: 'Все', isActive: false },
+  { id: 1, lable: 'Все', isActive: true },
   { id: 2, lable: 'Мясные', isActive: false },
   { id: 3, lable: 'Вегетарианская', isActive: false },
   { id: 4, lable: 'Гриль', isActive: false },

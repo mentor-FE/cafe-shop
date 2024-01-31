@@ -10,7 +10,7 @@
     "rating": 4
   },
   {
-    "id": 0,
+    "id": 1,
     "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/2cac8238ae9e42cd95dd00c17146e1fd_292x292.webp",
     "description": "Цыпленок, острая чоризо, соус бургер, сладкий перец, красный лук, томаты, моцарелла, соус ранч, чеснок",
     "title": "Мортаделла с песто",
@@ -21,7 +21,7 @@
     "rating": 4
   },
   {
-    "id": 1,
+    "id": 2,
     "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/11ee8a3878dd949ebe0175e3fc3b1e9b_292x292.webp",
     "description": "Ветчина, маринованные огурчики, томаты, красный лук, чеснок, соус бургер, моцарелла, фирменный томатный соус",
     "title": "4 сыра",
@@ -32,7 +32,7 @@
     "rating": 4
   },
   {
-    "id": 2,
+    "id": 3,
     "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/18dbb12240b041a191c9dc73c9c1f4ef_292x292.webp",
     "description": "Острая чоризо, острый перец халапеньо, соус барбекю, митболы из говядины, томаты, сладкий перец, красный лук, моцарелла, фирменный томатный соус",
     "title": "Мортаделла с песто",
