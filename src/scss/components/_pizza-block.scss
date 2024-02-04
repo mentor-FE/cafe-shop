@@ -2,9 +2,12 @@
 
 .pizza-block {
   width: 280px;
+  height: 500px;
   text-align: center;
-  margin-bottom: 65px;
   transition: all 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   &:hover {
     transform: scale(1.03);
@@ -13,6 +16,14 @@
   &-wrapper {
     display: flex;
     justify-content: center;
+  }
+
+  &__flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 430px;
+    align-items: center;
   }
 
   &__image {
@@ -32,6 +43,7 @@
     border-radius: 10px;
     flex-direction: column;
     padding: 6px;
+    width: 100%;
 
     ul {
       display: flex;
@@ -62,7 +74,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: auto;
   }
 
   &__price {

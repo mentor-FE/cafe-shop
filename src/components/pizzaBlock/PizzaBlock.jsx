@@ -28,32 +28,33 @@ const PizzaBlock = ({
 
   return (
     <div className='pizza-block'>
-      <img className='pizza-block__image' src={imageUrl} alt='Pizza' />
-      <h4 className='pizza-block__title'>{title}</h4>
-      <p>{description}</p>
-      <div className='pizza-block__selector'>
-        <ul>
-          {types.map((type) => (
-            <li
-              key={typePizzas[type]}
-              onClick={() => setActiveType(type)}
-              className={`${type === activeType ? 'active' : ''}`}
-            >
-              {typePizzas[type]}
-            </li>
-          ))}
-        </ul>
-        <ul>
-          {sizes.map((size) => (
-            <li
-              key={size}
-              onClick={() => setActiveSize(size)}
-              className={`${size === activeSize ? 'active' : ''}`}
-            >
-              {size} см.
-            </li>
-          ))}
-        </ul>
+      <div className="pizza-block__flex">
+        <img className='pizza-block__image' src={imageUrl} alt='Pizza' />
+        <h4 className='pizza-block__title'>{title}</h4>
+        <div className='pizza-block__selector'>
+          <ul>
+            {types.map((type) => (
+              <li
+                key={typePizzas[type]}
+                onClick={() => setActiveType(type)}
+                className={`${type === activeType ? 'active' : ''}`}
+              >
+                {typePizzas[type]}
+              </li>
+            ))}
+          </ul>
+          <ul>
+            {sizes.map((size) => (
+              <li
+                key={size}
+                onClick={() => setActiveSize(size)}
+                className={`${size === activeSize ? 'active' : ''}`}
+              >
+                {size} см.
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <div className='pizza-block__bottom'>
         <div className='pizza-block__price'>от {price} ₽</div>
