@@ -1,16 +1,17 @@
 // rafce
 
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Categories from '../components/Categories'
 import Sort from '../components/Sort'
 import Skeleton from '../components/pizzaBlock/Skeleton'
 import PizzaBlock from '../components/pizzaBlock/PizzaBlock'
 
 import '../scss/app.scss'
-import ListItems from '../components/test'
 import Paginatioin from '../components/Pagination/Pagination'
+import { SearchContext } from '../App'
 
-const Home = ({ value }) => {
+const Home = () => {
+  const { searchValue } = useContext(SearchContext)
   const [pizzasData, setPizzasData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [categoryId, setCategoryId] = useState(0)
@@ -24,13 +25,13 @@ const Home = ({ value }) => {
   const sortBy = sortType.sort.replace('-', '')
   const order = sortType.sort.includes('-') ? 'desc' : 'asc'
   const sortByCat = categoryId > 0 ? `category=${categoryId}&` : ''
-  const searchValue = value.toLowerCase().trim()
+  const searchValueStr = searchValue.toLowerCase().trim()
 
   useEffect(() => {
     setIsLoading(true)
     const getPizzas = async () => {
       const resp = await fetch(
-        `https://65bf7f4625a83926ab951286.mockapi.io/api/pizzas/pizzas?page=${currentPage}&limit=8&${sortByCat}search=${searchValue}&sortBy=${sortBy}&order=${order}`
+        `https://65bf7f4625a83926ab951286.mockapi.io/api/pizzas/pizzas?page=${currentPage}&limit=8&${sortByCat}search=${searchValueStr}&sortBy=${sortBy}&order=${order}`
       )
       const pizzas = await resp.json()
       setPizzasData(pizzas)
@@ -40,11 +41,11 @@ const Home = ({ value }) => {
     getPizzas()
 
     window.scrollTo(0, 0)
-  }, [categoryId, sortType, value, currentPage])
+  }, [categoryId, sortType, searchValue, currentPage])
 
   const filterPizzas = pizzasData
     .filter((item) => {
-      if (item.title.toLowerCase().includes(searchValue)) {
+      if (item.title.toLowerCase().includes(searchValueStr)) {
         return true
       } else {
         return false
@@ -64,7 +65,7 @@ const Home = ({ value }) => {
       <div className='content__items'>
         {isLoading ? skeletons : filterPizzas}
       </div>
-      <Paginatioin onCurrent={numder => setCurrentPage(numder)} />
+      <Paginatioin onCurrent={(numder) => setCurrentPage(numder)} />
     </>
   )
 }

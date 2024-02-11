@@ -6,35 +6,28 @@ import './scss/app.scss'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import Cart from './pages/Cart'
-const categories = [
-  { id: 1, lable: 'Все', isActive: true },
-  { id: 2, lable: 'Мясные', isActive: false },
-  { id: 3, lable: 'Вегетарианская', isActive: false },
-  { id: 4, lable: 'Гриль', isActive: false },
-  { id: 5, lable: 'Острые', isActive: false },
-  { id: 6, lable: 'Закрытые', isActive: false },
-];
-export const CategoriesContext = createContext()
+
+export const SearchContext = createContext('')
 
 function App() {
   const [searchValue, setSearchValue] = useState('')
 
-  console.log(searchValue);
+  console.log(searchValue)
   return (
-    <CategoriesContext.Provider value={categories}>
+    <SearchContext.Provider value={{searchValue, setSearchValue}}>
       <div className='wrapper'>
-        <Header value={searchValue} getValue={setSearchValue} />
+        <Header />
         <div className='content'>
           <div className='container'>
             <Routes>
-              <Route path='/' element={<Home value={searchValue} />} />
+              <Route path='/' element={<Home />} />
               <Route path='/cart' element={<Cart />} />
               <Route path='*' element={<NotFound />} />
             </Routes>
           </div>
         </div>
       </div>
-    </CategoriesContext.Provider>
+    </SearchContext.Provider>
   )
 }
 
