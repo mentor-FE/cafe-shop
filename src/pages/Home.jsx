@@ -8,15 +8,19 @@ import Skeleton from '../components/pizzaBlock/Skeleton'
 import PizzaBlock from '../components/pizzaBlock/PizzaBlock'
 
 import '../scss/app.scss'
+import ListItems from "../components/test"
 
 const Home = () => {
   const [pizzasData, setPizzasData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-
+  const [categoryId, setCategoryId] = useState(1)
+  const [sortType, setSortType] = useState({ name: 'популярности', sort: 'rating' })
+  // /pizzas?sortBy=rating&arder=asc
   useEffect(() => {
+    setIsLoading(true)
     const getPizzas = async () => {
       const resp = await fetch(
-        'https://file.notion.so/f/f/b3238354-86d5-4ba6-9ad7-eb01112a9acd/36ad4e93-800e-451b-9831-ae6abe1b28ef/pizzas.json?id=e934efcc-4042-481d-9d73-76f227f1696e&table=block&spaceId=b3238354-86d5-4ba6-9ad7-eb01112a9acd&expirationTimestamp=1707134400000&signature=vh-4gfw6v2Y9iEEmtDkpUokKd6QTBKayTb5mNlPhnKk&downloadName=pizzas.json'
+        `https://65bf7f4625a83926ab951286.mockapi.io/api/pizzas/pizzas?category=${categoryId}`
       )
       const pizzas = await resp.json()
       setPizzasData(pizzas)
@@ -24,12 +28,17 @@ const Home = () => {
     }
 
     getPizzas()
-  }, [])
+
+    window.scrollTo(0, 0)
+  }, [categoryId])
+
+  console.log(sortType.name);
+  
   return (
     <>
       <div className='content__top'>
-        <Categories />
-        <Sort />
+        <Categories onChangeCategory={(id) => setCategoryId(id)} />
+        <Sort value={sortType} onChangeSort={(sort) => setSortType(sort)} />
       </div>
       <h2 className='content__title'>Все пиццы</h2>
       <div className='content__items'>
@@ -37,6 +46,7 @@ const Home = () => {
           ? [...new Array(6)].map((_, i) => <Skeleton key={i} />)
           : pizzasData.map((item) => <PizzaBlock key={item.id} {...item} />)}
       </div>
+      <ListItems />
     </>
   )
 }

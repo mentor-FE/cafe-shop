@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
 
-const Sort = () => {
+const Sort = ({ value, onChangeSort }) => {
   const [isShowPopup, setIsShowPopup] = useState(false)
-  const [selected, setSelected] = useState('популярности')
-  const [isActiveSort, setIsActiveSort] = useState(false)
+  const list = [
+    { name: 'популярности', sort: 'rating' },
+    { name: 'цене', sort: 'price' },
+    { name: 'алфавиту', sort: 'title' },
+  ]
+  // const sortName = list[value].name
 
-  const setSelectidAndActive = (select, index) => {
-    setSelected(select)
-    setIsActiveSort(index)
+  const setSelectidAndActive = (item) => {
+    onChangeSort(item)
     setIsShowPopup(false)
   }
 
-  const sorted = ['популярности', 'цене', 'алфавиту']
-  
   return (
     <div className='sort'>
       <div className='sort__label'>
@@ -29,18 +30,21 @@ const Sort = () => {
           ></path>
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setIsShowPopup((prev) => !prev)}>{selected}</span>
+
+        <span onClick={() => setIsShowPopup((prev) => !prev)}>
+          {value.name}
+        </span>
       </div>
       {isShowPopup && (
         <div className='sort__popup'>
           <ul>
-            {sorted.map((item, index) => (
+            {list.map((item) => (
               <li
-                key={item}
-                onClick={() => setSelectidAndActive(item, index)}
-                className={`${index === isActiveSort ? 'active' : ''}`}
+                key={item.name}
+                onClick={() => setSelectidAndActive(item)}
+                className={`${item.sort === value.sort ? 'active' : ''}`}
               >
-                {item}
+                {item.name}
               </li>
             ))}
           </ul>

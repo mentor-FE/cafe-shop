@@ -8,10 +8,11 @@ const categories = [
   { id: 6, lable: 'Закрытые', isActive: false },
 ]
 
-const Categories = () => {
+const Categories = ({onChangeCategory}) => {
   const [activeCategories, setActiveCategories] = useState(categories)
 
   const handleSetActive = (id) => {
+    onChangeCategory(id)
     return setActiveCategories((prev) =>
       prev.map((item) => {
         if (item.id === id) {
