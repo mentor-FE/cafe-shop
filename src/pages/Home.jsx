@@ -14,12 +14,13 @@ const Home = ({ value }) => {
   const [pizzasData, setPizzasData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [categoryId, setCategoryId] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1)
   const [sortType, setSortType] = useState({
     name: 'популярности',
     sort: 'rating',
   })
-  const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-  // /pizzas?sortBy=rating&order=asc
+
+  // /pizzas?sortBy=rating&order=asc page=1&limit=8&
   const sortBy = sortType.sort.replace('-', '')
   const order = sortType.sort.includes('-') ? 'desc' : 'asc'
   const sortByCat = categoryId > 0 ? `category=${categoryId}&` : ''
@@ -29,7 +30,7 @@ const Home = ({ value }) => {
     setIsLoading(true)
     const getPizzas = async () => {
       const resp = await fetch(
-        `https://65bf7f4625a83926ab951286.mockapi.io/api/pizzas/pizzas?${sortByCat}search=${searchValue}&sortBy=${sortBy}&order=${order}`
+        `https://65bf7f4625a83926ab951286.mockapi.io/api/pizzas/pizzas?page=${currentPage}&limit=8&${sortByCat}search=${searchValue}&sortBy=${sortBy}&order=${order}`
       )
       const pizzas = await resp.json()
       setPizzasData(pizzas)
@@ -39,7 +40,7 @@ const Home = ({ value }) => {
     getPizzas()
 
     window.scrollTo(0, 0)
-  }, [categoryId, sortType, value])
+  }, [categoryId, sortType, value, currentPage])
 
   const filterPizzas = pizzasData
     .filter((item) => {
@@ -63,7 +64,7 @@ const Home = ({ value }) => {
       <div className='content__items'>
         {isLoading ? skeletons : filterPizzas}
       </div>
-      <Paginatioin />
+      <Paginatioin onCurrent={numder => setCurrentPage(numder)} />
     </>
   )
 }
