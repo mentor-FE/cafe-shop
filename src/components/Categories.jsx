@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 const categories = [
-  { id: 1, lable: 'Все', isActive: true },
-  { id: 2, lable: 'Мясные', isActive: false },
-  { id: 3, lable: 'Вегетарианская', isActive: false },
-  { id: 4, lable: 'Гриль', isActive: false },
-  { id: 5, lable: 'Острые', isActive: false },
-  { id: 6, lable: 'Закрытые', isActive: false },
+  { id: 0, lable: 'Все', isActive: true },
+  { id: 1, lable: 'Мясные', isActive: false },
+  { id: 2, lable: 'Вегетарианская', isActive: false },
+  { id: 3, lable: 'Гриль', isActive: false },
+  { id: 4, lable: 'Острые', isActive: false },
+  { id: 5, lable: 'Закрытые', isActive: false },
 ]
 
 const Categories = ({onChangeCategory}) => {
@@ -13,6 +13,7 @@ const Categories = ({onChangeCategory}) => {
 
   const handleSetActive = (id) => {
     onChangeCategory(id)
+    console.log(activeCategories);
     return setActiveCategories((prev) =>
       prev.map((item) => {
         if (item.id === id) {
