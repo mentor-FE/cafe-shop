@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useState, useEffect, useMemo } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 
@@ -14,7 +14,7 @@ function App() {
 
   console.log(searchValue)
   return (
-    <SearchContext.Provider value={{searchValue, setSearchValue}}>
+    <SearchContext.Provider value={{ searchValue, setSearchValue }}>
       <div className='wrapper'>
         <Header />
         <div className='content'>

@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+
+
 const categories = [
   { id: 0, lable: 'Все', isActive: true },
   { id: 1, lable: 'Мясные', isActive: false },
@@ -8,12 +10,13 @@ const categories = [
   { id: 5, lable: 'Закрытые', isActive: false },
 ]
 
-const Categories = ({onChangeCategory}) => {
+const Categories = ({ onChangeCategory }) => {
   const [activeCategories, setActiveCategories] = useState(categories)
+
 
   const handleSetActive = (id) => {
     onChangeCategory(id)
-    console.log(activeCategories);
+    console.log(activeCategories)
     return setActiveCategories((prev) =>
       prev.map((item) => {
         if (item.id === id) {
@@ -25,19 +28,20 @@ const Categories = ({onChangeCategory}) => {
   }
 
   return (
-    <div className='categories'>
-      <ul>
-        {activeCategories.map(({ id, isActive, lable }) => (
-          <li
-            key={id}
-            className={`${isActive ? 'active' : ''}`}
-            onClick={() => handleSetActive(id)}
-          >
-            {lable}
-          </li>
-        ))}
-      </ul>
-    </div>
+
+      <div className='categories'>
+        <ul>
+          {activeCategories.map(({ id, isActive, lable }) => (
+            <li
+              key={id}
+              className={`${isActive ? 'active' : ''}`}
+              onClick={() => handleSetActive(id)}
+            >
+              {lable}
+            </li>
+          ))}
+        </ul>
+      </div>
   )
 }
 

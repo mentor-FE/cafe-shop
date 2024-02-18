@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setPage } from '../../redux/slices/paginationSlice'
 import ReactPaginate from 'react-paginate'
 import styles from './Pagination.module.scss'
 
-const Paginatioin = ({onCurrent}) => {
+const Paginatioin = () => {
+
+  const dispatch = useDispatch()
+
   return (
     <ReactPaginate
     className={styles.root}
     breakLabel="..."
     nextLabel=">"
-    onPageChange={(e) => onCurrent(e.selected + 1)}
+    onPageChange={(e) => dispatch(setPage(e.selected + 1))}
     pageRangeDisplayed={8}
     pageCount={3}
     previousLabel="<"

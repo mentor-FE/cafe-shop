@@ -1,6 +1,13 @@
 import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { setSortObject } from "../redux/slices/filterSlice.js"
 
-const Sort = ({ value, onChangeSort }) => {
+const Sort = () => {
+
+
+  const sortObj = useSelector(state => state.pizzaFilter.sort)
+  const dispatch = useDispatch()
+
   const [isShowPopup, setIsShowPopup] = useState(false)
   const list = [
     { name: 'популярности (ASC)', sort: 'rating' },
@@ -14,7 +21,7 @@ const Sort = ({ value, onChangeSort }) => {
   // const sortName = list[value].name
 
   const setSelectidAndActive = (item) => {
-    onChangeSort(item)
+    dispatch(setSortObject(item))
     setIsShowPopup(false)
   }
 
@@ -36,7 +43,7 @@ const Sort = ({ value, onChangeSort }) => {
         <b>Сортировка по:</b>
 
         <span onClick={() => setIsShowPopup((prev) => !prev)}>
-          {value.name}
+          {sortObj.name}
         </span>
       </div>
       {isShowPopup && (
@@ -46,7 +53,7 @@ const Sort = ({ value, onChangeSort }) => {
               <li
                 key={item.name}
                 onClick={() => setSelectidAndActive(item)}
-                className={`${item.sort === value.sort ? 'active' : ''}`}
+                className={`${item.sort === sortObj.sort ? 'active' : ''}`}
               >
                 {item.name}
               </li>
