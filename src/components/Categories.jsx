@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { setCategoryId } from '../redux/slices/filterSlice'
 
 
 const categories = [
@@ -10,13 +12,14 @@ const categories = [
   { id: 5, lable: 'Закрытые', isActive: false },
 ]
 
-const Categories = ({ onChangeCategory }) => {
+const Categories = () => {
+
+  const dispatch = useDispatch()
   const [activeCategories, setActiveCategories] = useState(categories)
 
 
   const handleSetActive = (id) => {
-    onChangeCategory(id)
-    console.log(activeCategories)
+    dispatch(setCategoryId(id))
     return setActiveCategories((prev) =>
       prev.map((item) => {
         if (item.id === id) {

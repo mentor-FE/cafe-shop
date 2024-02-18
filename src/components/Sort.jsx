@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSortObject } from "../redux/slices/filterSlice.js"
+import { list } from "./consts.js"
 
 const Sort = () => {
 
@@ -9,14 +10,6 @@ const Sort = () => {
   const dispatch = useDispatch()
 
   const [isShowPopup, setIsShowPopup] = useState(false)
-  const list = [
-    { name: 'популярности (ASC)', sort: 'rating' },
-    { name: 'популярности (DESC)', sort: '-rating' },
-    { name: 'цене (ASC)', sort: 'price' },
-    { name: 'цене (DESC)', sort: '-price' },
-    { name: 'алфавиту (ASC)', sort: 'title' },
-    { name: 'алфавиту (DESC)', sort: '-title' },
-  ]
 
   // const sortName = list[value].name
 
